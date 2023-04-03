@@ -24,7 +24,7 @@ class HotelSection extends StatelessWidget {
       'place': 'Cameroon, Douala',
       'distance': '20',
       'review': '56',
-      'picture': 'images/image1.jpg',
+      'picture': 'images/image3.jpeg',
       'price': '289'
     },
     {
@@ -32,7 +32,7 @@ class HotelSection extends StatelessWidget {
       'place': 'Cameroon, Bafoussam',
       'distance': '30',
       'review': '3600',
-      'picture': 'images/image1.jpg',
+      'picture': 'images/image5.jpeg',
       'price': '500'
     },
     {
@@ -40,7 +40,7 @@ class HotelSection extends StatelessWidget {
       'place': 'Cameroon, Yaounde',
       'distance': '2000',
       'review': '36',
-      'picture': 'images/image1.jpg',
+      'picture': 'images/image4.jpeg',
       'price': '20'
     }
   ];
