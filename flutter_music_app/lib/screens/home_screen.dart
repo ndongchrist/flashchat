@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_music_app/models/playlist_model.dart';
 import 'package:flutter_music_app/models/song_model.dart';
 
+import '../widgets/custom_appbar.dart';
+import '../widgets/platlist_card.dart';
 import '../widgets/section_bar.dart';
 import '../widgets/song_card.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   List<Song> songs = Song.songs;
+  List<Playlist> playlists = Playlist.playlists;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +73,10 @@ class HomeScreen extends StatelessWidget {
                         SectionBar(
                           title: "Trending Music",
                         ),
-                        SizedBox(
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
                           height: MediaQuery.of(context).size.height * 0.27,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
@@ -80,7 +87,15 @@ class HomeScreen extends StatelessWidget {
                           ),
                         )
                       ],
-                    )
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SectionBar(title: 'Playlists'),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    PlaylistCard(playlists: playlists)
                   ],
                 ),
               ),
@@ -116,31 +131,4 @@ class CustomBottomNavigationBar extends StatelessWidget {
               icon: Icon(Icons.people_outlined), label: 'Profile'),
         ]);
   }
-}
-
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  const CustomAppBar({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      leading: const Icon(Icons.grid_view_rounded),
-      actions: [
-        Container(
-          margin: const EdgeInsets.only(right: 10),
-          child: CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Favatar&psig=AOvVaw1B5Y2k6H9Ry5Lb5jYiO9lV&ust=1682370759559000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMDqt9P1wP4CFQAAAAAdAAAAABAE'),
-          ),
-        ),
-      ],
-    );
-  }
-
-  @override
-  Size get preferredSize => Size.fromHeight(34);
 }

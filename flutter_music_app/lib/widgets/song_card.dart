@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../models/song_model.dart';
 
 class SongCard extends StatelessWidget {
@@ -13,52 +12,63 @@ class SongCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          padding: const EdgeInsets.only(bottom: 10),
-          width: MediaQuery.of(context).size.width * 0.4,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(song.imageUrl),
-              fit: BoxFit.cover,
-            ),
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                spreadRadius: 1,
-                blurRadius: 5,
-                offset: Offset(0, 3),
+    return InkWell(
+      onTap: () {
+        Get.toNamed('/song', arguments: song);
+      },
+      child: Stack(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(right: 10),
+            width: MediaQuery.of(context).size.width * 0.45,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(song.imageUrl),
+                fit: BoxFit.cover,
               ),
-            ],
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white,
+            ),
           ),
-        ),
-        Container(
-          alignment: Alignment.bottomLeft,
-          height: 80,
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.3),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
+          Positioned(
+            bottom: 0,
+            child: Container(
+              height: 55,
+              margin: const EdgeInsets.only(bottom: 10, right: 10),
+              width: MediaQuery.of(context).size.width * 0.4,
+              decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.6),
+                  borderRadius: BorderRadius.circular(20)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(song.title,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(color: Colors.white)),
-                  Text(song.artist)
+                  Column(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      FittedBox(
+                        child: Text(song.title,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                                    color: Colors.deepPurple.shade800,
+                                    fontWeight: FontWeight.bold)),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(song.artist)
+                    ],
+                  ),
+                  Icon(Icons.play_circle, color: Colors.deepPurple.shade800)
                 ],
               ),
-              Icon(Icons.play_arrow, color: Colors.white)
-            ],
-          ),
-        )
-      ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
