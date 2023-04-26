@@ -12,7 +12,23 @@ class PlayerButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        StreamBuilder<SequenceState?>(
+          builder: (context, index) {
+            return IconButton(
+                onPressed: () {
+                  audioPlayer.seekToPrevious();
+                },
+                icon: Icon(
+                  Icons.skip_previous,
+                  color: Colors.white,
+                  size: 45,
+                ));
+          },
+          stream: audioPlayer.sequenceStateStream,
+        ),
         StreamBuilder(
           stream: audioPlayer.playerStateStream,
           builder: (context, snapshot) {
@@ -37,7 +53,7 @@ class PlayerButtons extends StatelessWidget {
                     icon: Icon(
                       Icons.play_circle,
                       color: Colors.white,
-                      size: 45,
+                      size: 65,
                     ));
               } else if (processingState != ProcessingState.completed) {
                 return IconButton(
@@ -65,7 +81,24 @@ class PlayerButtons extends StatelessWidget {
               return CircularProgressIndicator();
             }
           },
-        )
+        ),
+        SizedBox(
+          width: 20,
+        ),
+        StreamBuilder<SequenceState?>(
+          builder: (context, index) {
+            return IconButton(
+                onPressed: () {
+                  audioPlayer.seekToNext();
+                },
+                icon: Icon(
+                  Icons.skip_next,
+                  color: Colors.white,
+                  size: 45,
+                ));
+          },
+          stream: audioPlayer.sequenceStateStream,
+        ),
       ],
     );
   }
