@@ -58,6 +58,9 @@ class PlaylistScreen extends StatelessWidget {
                       ),
                 ),
                 SizedBox(height: 28),
+                Row(
+                  children: [Container()],
+                )
               ],
             ),
           ),
