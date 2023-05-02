@@ -1,13 +1,13 @@
 class Song {
-  String title;
-  String artist;
-  String imageUrl;
-  String Url;
+  String title = '';
+  String artist = '';
+  String imageUrl = '';
+  String Url = '';
   Song(
-      {required this.Url,
-      required this.title,
-      required this.artist,
-      required this.imageUrl});
+      {this.Url = " ",
+      this.title = " ",
+      this.artist = "",
+      this.imageUrl = " "});
 
   static List<Song> songs = [
     Song(
